@@ -2,6 +2,9 @@ package seedu.taskify.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.taskify.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static seedu.taskify.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -40,6 +43,17 @@ public class ExpiredCommandTest {
         Task firstTaskInExpectedModel = expectedModel.getExpiredFilteredTaskList().get(0);
         assert firstTaskInModel.equals(firstTaskInExpectedModel) == true;
     }
+
+    @Test
+    public void executeExpiredCommand() {
+        CommandResult.setExpiredTab();
+        showTaskAtIndex(model, INDEX_FIRST_TASK);
+        showTaskAtIndex(expectedModel, INDEX_FIRST_TASK);
+        assertCommandSuccess(new ExpiredCommand(), model, "You are already in expired tab!", expectedModel);
+
+    }
+
+
 
     @Test
     public void equals() {

@@ -130,6 +130,18 @@ public class CommandResult {
 
     public static void setHomeTab() {
         showHome = true;
+        showExpired = false;
+        showCompleted = false;
+        showTodays = true;
+        showUncompleted = false;
+    }
+
+    public static void setExpiredTab() {
+        showHome = true;
+        showExpired = true;
+        showCompleted = false;
+        showTodays = true;
+        showUncompleted = false;
     }
 
     public static boolean isHomeTab() {

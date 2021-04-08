@@ -2,6 +2,9 @@ package seedu.taskify.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.taskify.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static seedu.taskify.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -39,6 +42,18 @@ public class HomeCommandTest {
         Task firstTaskInModel = model.getFilteredTaskList().get(0);
         Task firstTaskInExpectedModel = expectedModel.getFilteredTaskList().get(0);
         assert firstTaskInModel.equals(firstTaskInExpectedModel) == true;
+    }
+
+    @Test
+    public void executeHomeCommandFiltered() {
+        CommandResult.setHomeTab();
+        showTaskAtIndex(model, INDEX_FIRST_TASK);
+        assertCommandSuccess(new HomeCommand(), model, "You are already in home tab!", expectedModel);
+    }
+
+    @Test
+    public void executeHomeCommandUnfiltered() {
+        assertCommandSuccess(new HomeCommand(), model, "You are already in home tab!", expectedModel);
     }
 
     @Test
